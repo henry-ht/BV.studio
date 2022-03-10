@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BalanceController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,14 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post("register", [RegisterController::class, 'store']);
-Route::post("auth", [AuthController::class, 'store']);
 
 
-Route::group(['middleware' => ['auth:api']], function (){
+Route::apiResource("user", UserController::class);
 
-    Route::apiResource("balance", BalanceController::class);
-
-    Route::apiResource("payment", PaymentController::class);
-
-});
